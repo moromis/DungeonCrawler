@@ -8,3 +8,5 @@ Simple ASCII dungeon crawler.
 *U and arrow key in direction of '=' (door) to unlock said door.
 
 *Monsters spawn with a variety of looks and chase the player.
+
+**To download the executable .jar file to immediately play the game, navigate to the \out\artifacts\DungeonCrawler_jar folder.
