@@ -1,0 +1,261 @@
+
+/**
+ * Created by Kevin on 5/17/2015.
+ */
+public class DungeonBuilder3_0 {
+
+    private int x;
+    private int y;
+    private char[][] map;
+    private int[][] CollisionMap;
+
+    public DungeonBuilder3_0(int max_y, int max_x) {
+        y = max_y;
+        x = max_x;
+
+        map = new char[y][x];
+        CollisionMap = new int[y][x];
+        fillMap(y, x);
+        tunnelMap(y, x, 1, 1); //Go up to 10 squares in each direction to start ourselves off
+        tunnelMap(y, x, 2, 1);
+        tunnelMap(y, x, 3, 1);
+        tunnelMap(y, x, 4, 1);
+        tunnelMap(y, x, 0, 0); //Then go crazy exactly twice
+        tunnelMap(y, x, 0, 0);
+
+        placeRooms(y, x); //Scatter some rooms around
+
+        cleanup(y, x); //Cleanup the map so there's no loose doors in the middle of nowhere
+
+        makeCollisionMap(y, x);
+    }
+
+    /**
+     * This function gets rid of any doors in the middle of spaces.
+     */
+    private void cleanup(int y, int x) {
+        for (int i = 0; i < y; i++) {
+            for (int j = 0; j < x; j++) {
+                if(map[i][j] == '='){ //If we're on a door
+                    if(i-1 > 0 && i+1 < y && j-1 > 0 && j+1 < x) { //And if we're not right next to an edge of the map
+                        //Check in the four cardinal directions
+                        if ((map[i - 1][j] == '+' || map[i - 1][j] == '*') && (map[i + 1][j] == '+' || map[i + 1][j] == '*') && (map[i][j + 1] == '+' || map[i][j + 1] == '*') && (map[i][j-1] == '+' || map[i][j-1] == '*')){
+                            //System.out.println("Destroyed a rogue door!");
+                            map[i][j] = '*'; //Make it into a floor
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    private void placeRooms(int y, int x) {
+        //int n = (int)(Math.random() * 5 + (x / 10) + (y*0.3)); //Number of rooms to be placed
+        int n = 3;
+        int l = (3 + (int) (Math.random() * ((x / 5 - 3) + 1))); //Length of room
+        int h = (3 + (int) (Math.random() * ((y / 5 - 3) + 1))); //Height of room
+        int rel_x = 0;
+        int rel_y = 0;
+        int direction = (int) (1 + (Math.random() * 4)); //Direction to go once room is made
+
+        for (int i = 0; i < n; i++) { //Make n rooms
+            rel_y = (1 + ((int) (Math.random() * (((y - 1) - 1) + 1)))); //random number from 1 to y-1
+            rel_x = (1 + ((int) (Math.random() * (((x - 1) - 1) + 1)))); //random number from 1 to x-1
+            if ((rel_x + l) < x && (rel_y + h) < y) { //Make sure we're within bounds before we build the room
+                for (int j = rel_y; j < (rel_y + h); j++) {
+                    for (int k = rel_x; k < (rel_x + l); k++) {
+                        map[j][k] = '*';
+                    }
+                }
+            }
+            if ((rel_x + l) < x && (rel_y + h) < y) {
+                switch (direction) {
+                    case 1:
+                        map[rel_y - 1][rel_x + (l/2)] = '=';
+                        if(rel_y - 2 > 0) {
+                            tunnel(y, x, rel_y - 2, rel_x + (l / 2), direction);
+                        }
+                        break;
+                    case 2:
+                        map[rel_y + (h/2)][rel_x + l] = '=';
+                        if(rel_x + l + 1 < x) {
+                            tunnel(y, x, rel_y + (h / 2), rel_x + l + 1, direction);
+                        }
+                        break;
+                    case 3:
+                        map[rel_y + h][rel_x + (l/2)] = '=';
+                        if(rel_y + h + 1 < y) {
+                            tunnel(y, x, rel_y + h + 1, rel_x + (l / 2), direction);
+                        }
+                        break;
+                    case 4:
+                        map[rel_y + (h/2)][rel_x - 1] = '=';
+                        if(rel_x - 2 > 0) {
+                            tunnel(y, x, rel_y + (h / 2), rel_x - 2, direction);
+                        }
+                        break;
+                }
+            }
+
+            direction = (int) (1 + (Math.random() * 4));
+            l = (3 + (int) (Math.random() * ((x / 5 - 3) + 1)));
+            h = (3 + (int) (Math.random() * ((x / 5 - 3) + 1)));
+        }
+    }
+
+    /**
+     * From a given (x,y) tunnel in passed direction until we find floor
+     */
+    private void tunnel(int totaly, int totalx, int y, int x, int direction) {
+        while(map[y][x] == '#' && x < totalx && x > 0 && y < totaly && y > 0){ //While we're on a wall
+            switch (direction) {
+                case 1: //North
+                    if ((y - 1) > 0) {//So we don't go out of bounds
+                        map[y][x] = '+';
+                        y--;
+                    }else{
+                        if(direction == 4){
+                            direction = 1;
+                        }else{
+                            direction++;
+                        }
+                    }
+                    break;
+                case 2: //East
+                    if ((x + 1) < (totalx - 1)) {//So we don't go out of bounds
+                        map[y][x] = '+';
+                        x++;
+                    }else{
+                        if(direction == 4){
+                            direction = 1;
+                        }else{
+                            direction++;
+                        }
+                    }
+                    break;
+                case 3: //South
+                    if ((y + 1) < totaly - 1) {//So we don't go out of bounds
+                        map[y][x] = '+';
+                        y++;
+                    }else{
+                        if(direction == 4){
+                            direction = 1;
+                        }else{
+                            direction++;
+                        }
+                    }
+                    break;
+                case 4: //West
+                    if ((x - 1) > 0) { //So we don't go out of bounds
+                        map[y][x] = '+';
+                        x--;
+                    }else{
+                        if(direction == 4){
+                            direction = 1;
+                        }else{
+                            direction++;
+                        }
+                    }
+                    break;
+            }
+        }
+    }
+
+    /**
+     * Fills the map with wall tile
+     * @param x = max x of the entire cave
+     * @param y = max y of the entire cave
+     */
+    private void fillMap(int y, int x){
+        for (int i = 0; i < y; i++) {
+            for (int j = 0; j < x; j++) {
+                map[i][j] = '#';
+            }
+        }
+    }
+
+    /**
+     * Fills an int[][] with ones where the player can't go, such as walls
+     * 0 = floor (no collision), 1 = walls, 2 = doors
+     * @param x = max x of the entire cave
+     * @param y = max y of the entire cave
+     */
+    private void makeCollisionMap(int y, int x){
+        for (int i = 0; i < y; i++) {
+            for (int j = 0; j < x; j++) {
+                if(map[i][j] == '#'){
+                    CollisionMap[i][j] = 1;
+                }else if(map[i][j] == '=') {
+                    CollisionMap[i][j] = 2;
+                }else{
+                    CollisionMap[i][j] = 0;
+                }
+            }
+        }
+    }
+
+    /**
+     * Tunnels out the cave.
+     * @param x = max x of the entire cave
+     * @param y = max y of the entire cave
+     * @param dir = direction for the tunneler to head, if 0 it will be randomized
+     * @param num = number of times for the tunneler to move, if 0 it will be randomized
+     */
+    private void tunnelMap(int y, int x, int dir, int num){
+        int direction = dir;
+        if(dir == 0){
+            direction = (int)(1+(Math.random()*4));
+        }
+        int n;
+        if(num == 0){
+            n = (int)((Math.random()*(x*y) - (y/2)));
+        }else{
+            n =(int)(Math.random()*10);
+        }
+        int my_y = y/2;
+        int my_x = x/2;
+        map[my_y][my_x] = ':';
+
+        while(n>0){
+            switch (direction) {
+                case 1: //North
+                    if(my_y - 1 > 0){//So we don't go out of bounds
+                        my_y--;
+                        map[my_y][my_x] = '*';
+                    }
+                    break;
+                case 2: //East
+                    if(my_x + 1 < x-1){//So we don't go out of bounds
+                        my_x++;
+                        map[my_y][my_x] = '*';
+                    }
+                    break;
+                case 3: //South
+                    if(my_y + 1 < y-1){//So we don't go out of bounds
+                        my_y++;
+                        map[my_y][my_x] = '*';
+                    }
+                    break;
+                case 4: //West
+                    if(my_x - 1 > 0){ //So we don't go out of bounds
+                        my_x--;
+                        map[my_y][my_x] = '*';
+                    }
+                    break;
+            }
+            n--;
+            direction = (int)(1+(Math.random()*4));
+        }
+    }
+
+    /**
+     * Returns the class char array
+     */
+    public char[][] getDungeonMap() {
+        return map;
+    }
+
+    public int[][] getCollisionMap(){
+        return CollisionMap;
+    }
+}
