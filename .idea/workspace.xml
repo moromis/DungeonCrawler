@@ -6,15 +6,7 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a9b3aee9-dc5e-44c0-967e-a391226c5d02" name="Default" comment="Refactored Monster class to be a base class, created first child class Rat. Created a monster creator which uses sets of monsters based on the dungeon level to create randomized monsters for each floor based on that floor's difficulty.&#10;&#10;Changed monsters so they can't go through walls.&#10;&#10;TODO: Implement monsters range so they only pursue the player within their own given range.">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Monsters/Monster.java" />
-      <change type="DELETED" beforePath="C:\Users\Kevin\Desktop\CS211\DungeonCrawler\src\Monster.java" afterPath="" />
-      <change type="MOVED" beforePath="C:\Users\Kevin\Desktop\CS211\DungeonCrawler\src\DungeonBuilder3_0.java" afterPath="$PROJECT_DIR$/src/Main/DungeonBuilder3_0.java" />
-      <change type="MOVED" beforePath="C:\Users\Kevin\Desktop\CS211\DungeonCrawler\src\KeyHandle.java" afterPath="$PROJECT_DIR$/src/Main/KeyHandle.java" />
-      <change type="MOVED" beforePath="C:\Users\Kevin\Desktop\CS211\DungeonCrawler\src\Play.java" afterPath="$PROJECT_DIR$/src/Main/Play.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Old/Engine.java" afterPath="$PROJECT_DIR$/src/Old/Engine.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" afterPath="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
+    <list default="true" id="a9b3aee9-dc5e-44c0-967e-a391226c5d02" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="DungeonCrawler.iws" />
@@ -672,12 +664,19 @@
       <workItem from="1432373838116" duration="1328000" />
       <workItem from="1432376773151" duration="2197000" />
       <workItem from="1432411802660" duration="800000" />
-      <workItem from="1432413544996" duration="4948000" />
+      <workItem from="1432413544996" duration="4963000" />
     </task>
+    <task id="LOCAL-00001" summary="Refactored Monster class to be a base class, created first child class Rat. Created a monster creator which uses sets of monsters based on the dungeon level to create randomized monsters for each floor based on that floor's difficulty.&#10;&#10;Changed monsters so they can't go through walls.&#10;&#10;TODO: Implement monsters range so they only pursue the player within their own given range.">
+      <created>1432451998418</created>
+      <option name="number" value="00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1432451998418</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="103617000" />
+    <option name="totallyTimeSpent" value="103632000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -721,6 +720,7 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <MESSAGE value="Testing IntelliJ commit" />
     <MESSAGE value="Refactored Monster class to be a base class, created first child class Rat. Created a monster creator which uses sets of monsters based on the dungeon level to create randomized monsters for each floor based on that floor's difficulty.&#10;&#10;Changed monsters so they can't go through walls.&#10;&#10;TODO: Implement monsters range so they only pursue the player within their own given range." />
     <option name="LAST_COMMIT_MESSAGE" value="Refactored Monster class to be a base class, created first child class Rat. Created a monster creator which uses sets of monsters based on the dungeon level to create randomized monsters for each floor based on that floor's difficulty.&#10;&#10;Changed monsters so they can't go through walls.&#10;&#10;TODO: Implement monsters range so they only pursue the player within their own given range." />
