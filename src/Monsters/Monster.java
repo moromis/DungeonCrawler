@@ -8,24 +8,24 @@ public class Monster {
     private String glyph;
     private String description;
 
-    private int x_pos;
-    private int y_pos;
+    private int x;
+    private int y;
     private int pursue_range;
 
 
     private int[][] grid;
     private boolean spawned = false;
 
-    public Monster(int x, int y, int[][] map, String g, String desc, int pr){
+    public Monster(int room_width, int room_height, int[][] map, String g, String desc, int pr){
         glyph = g;
         grid = map;
         pursue_range = pr;
         description = desc;
         while(!spawned) {
-            x_pos = randInt(1, x-1); //Spawn it at a random x,y
-            y_pos = randInt(1, y-1);
-            System.out.println("X: " + x_pos + ", Y: " + y_pos);
-            if(grid[y_pos][x_pos] == 0){ //Make sure it's on a floor tile
+            this.x = randInt(1, room_width-1); //Spawn it at a random x,y
+            y = randInt(1, room_height-1);
+            System.out.println("X: " + x + ", Y: " + y);
+            if(grid[y][x] == 0){ //Make sure it's on a floor tile
                 spawned = true;
             }
         }
@@ -36,26 +36,56 @@ public class Monster {
      * line with the player and then going up or down till it has reached the player.
      *
      * Only pursues if the player is within pursue_range
-     * @param current_x - player's x pos
-     * @param current_y - player's y pos
+     * @param player_x - player's x pos
+     * @param player_y - player's y pos
      */
-    public void update(int current_x, int current_y){
-        int store_x = x_pos;
-        int store_y = y_pos;
-        if(x_pos < current_x){
-                store_x++;
-        }else if(x_pos > current_x){
-                store_x--;
-        }
-        if(y_pos > current_y){
-                store_y--;
-        }else if(y_pos < current_y){
-                store_y++;
-        }
-        if(store_x > x_pos || store_x < x_pos){
-            x_pos = store_x;
-        }else{
-            y_pos = store_y;
+    public void update(int player_x, int player_y){
+        System.out.println("\n\n\n\n\n\n\n\n");
+        System.out.println("*****UPDATING*********");
+        int diff_x = Math.abs(player_x - y);
+        int diff_y = Math.abs(player_y - y);
+        int store_x = x;
+        int store_y = y;
+        if(diff_x < pursue_range && diff_y < pursue_range) {
+            if (x < player_x) {
+                if (grid[y][x + 1] == 0) {
+                    System.out.println("moving right");
+                    store_x++;
+                } else {
+                    System.out.println("BLOCKED");
+                }
+            } else if (x > player_x) {
+                if (grid[y][x - 1] == 0) {
+                    System.out.println("moving left");
+                    store_x--;
+                } else {
+                    System.out.println("BLOCKED");
+                }
+            }
+
+            if (y < player_y) {
+                if (grid[y + 1][x] == 0) {
+                    System.out.println("moving down");
+                    store_y++;
+                } else {
+                    System.out.println("BLOCKED");
+                }
+            } else if (y > player_y) {
+                if (grid[y - 1][x] == 0) {
+                    System.out.println("moving up");
+                    store_y--;
+                } else {
+                    System.out.println("BLOCKED");
+                }
+            }
+
+            if (store_x > x || store_x < x) {
+                System.out.println("Pursuing X");
+                x = store_x;
+            } else if (store_y > y || store_y < y) {
+                System.out.println("Pursuing Y");
+                y = store_y;
+            }
         }
     }
 
@@ -64,11 +94,11 @@ public class Monster {
     }
 
     public int getX(){
-        return x_pos;
+        return x;
     }
 
     public int getY(){
-        return y_pos;
+        return y;
     }
 
     public String getDesc(){

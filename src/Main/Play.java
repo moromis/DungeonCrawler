@@ -132,6 +132,9 @@ public class Play extends JPanel {
         g.setColor(Color.WHITE); //Draw the monsters
         for (Monster monster : monsters) {
 
+            //System.out.println("PLAYER: " + current_x + ", " + current_y);
+            //System.out.println("MONSTER " + monster.toString() + ": " + monster.getX() + ", " + monster.getY());
+
             monster.update(current_x, current_y); //Update the monster's position relative to the player
 
             if (checkVisible(monster.getX(), monster.getY())) {
@@ -141,7 +144,6 @@ public class Play extends JPanel {
                 g.setColor(Color.WHITE); //Draw our player character
                 g.drawString(monster.getMonster(), centerDrawX - fontWidth * (current_x - monster.getX()), centerDrawY - fontHeight * (current_y - monster.getY()));
             }
-            System.out.println("Enemy: " + monster.getX() + ", " + monster.getY());
         }
     }
 
@@ -179,7 +181,6 @@ public class Play extends JPanel {
      * Draws the player, in the middle of the screen.
      */
     private static void drawPlayer(){
-        System.out.println("Player: " + current_x + ", " + current_y);
         Graphics g = frame.getGraphics();
         g.setFont(mainFont);
 
@@ -191,18 +192,10 @@ public class Play extends JPanel {
     }
 
     /**
-     * Checks if the given object is visible within our viewing window
+     * Checks if the given object is visible within our viewing window (Not the player though)
      */
     private static boolean checkVisible(int x, int y){
-        if(x >= current_x - 10 && x <= current_x + 10 && y >= current_y - 5 && y <= current_y + 5)
-        {
-            System.out.println("Visible");
-            return true;
-        }else{
-            System.out.println("Not visible");
-            return false;
-        }
-
+        return (x >= current_x - 10 && x < current_x + 10 && y >= current_y - 5 && y < current_y + 5);
     }
 
     public static void move(int val, char dir){
@@ -230,6 +223,7 @@ public class Play extends JPanel {
                 CollisionMap[current_y][current_x + val] = 0;
                 drawBG();
                 drawPlayer();
+                drawMonsters();
             }
         }else{
             if(CollisionMap[current_y + val][current_x] == 2) { //Check if there's a door
@@ -237,6 +231,7 @@ public class Play extends JPanel {
                 CollisionMap[current_y + val][current_x] = 0;
                 drawBG();
                 drawPlayer();
+                drawMonsters();
             }
         }
     }
