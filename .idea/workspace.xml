@@ -6,7 +6,7 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a9b3aee9-dc5e-44c0-967e-a391226c5d02" name="Default" comment="">
+    <list default="true" id="a9b3aee9-dc5e-44c0-967e-a391226c5d02" name="Default" comment="Refactored Monster class to be a base class, created first child class Rat. Created a monster creator which uses sets of monsters based on the dungeon level to create randomized monsters for each floor based on that floor's difficulty.&#10;&#10;Changed monsters so they can't go through walls.&#10;&#10;TODO: Implement monsters range so they only pursue the player within their own given range.">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DungeonCrawler/META-INF/MANIFEST.MF" afterPath="$PROJECT_DIR$/out/production/DungeonCrawler/META-INF/MANIFEST.MF" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
@@ -79,8 +79,8 @@
       <file leaf-file-name="Rat.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Monsters/Rat.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.22173913">
-              <caret line="13" column="47" selection-start-line="13" selection-start-column="47" selection-end-line="13" selection-end-column="47" />
+            <state vertical-scroll-proportion="0.29565218">
+              <caret line="18" column="0" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -669,7 +669,7 @@
       <workItem from="1432373838116" duration="1328000" />
       <workItem from="1432376773151" duration="2197000" />
       <workItem from="1432411802660" duration="800000" />
-      <workItem from="1432413544996" duration="6732000" />
+      <workItem from="1432413544996" duration="6761000" />
     </task>
     <task id="LOCAL-00001" summary="Refactored Monster class to be a base class, created first child class Rat. Created a monster creator which uses sets of monsters based on the dungeon level to create randomized monsters for each floor based on that floor's difficulty.&#10;&#10;Changed monsters so they can't go through walls.&#10;&#10;TODO: Implement monsters range so they only pursue the player within their own given range.">
       <created>1432451998418</created>
@@ -689,11 +689,17 @@
       <option name="project" value="LOCAL" />
       <updated>1432453767794</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Refactored Monster class to be a base class, created first child class Rat. Created a monster creator which uses sets of monsters based on the dungeon level to create randomized monsters for each floor based on that floor's difficulty.&#10;&#10;Changed monsters so they can't go through walls.&#10;&#10;TODO: Implement monsters range so they only pursue the player within their own given range.">
+      <created>1432453792429</created>
+      <option name="number" value="00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1432453792429</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="105401000" />
+    <option name="totallyTimeSpent" value="105430000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -737,10 +743,10 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <MESSAGE value="Testing IntelliJ commit" />
     <MESSAGE value="Refactored Monster class to be a base class, created first child class Rat. Created a monster creator which uses sets of monsters based on the dungeon level to create randomized monsters for each floor based on that floor's difficulty.&#10;&#10;Changed monsters so they can't go through walls.&#10;&#10;TODO: Implement monsters range so they only pursue the player within their own given range." />
     <option name="LAST_COMMIT_MESSAGE" value="Refactored Monster class to be a base class, created first child class Rat. Created a monster creator which uses sets of monsters based on the dungeon level to create randomized monsters for each floor based on that floor's difficulty.&#10;&#10;Changed monsters so they can't go through walls.&#10;&#10;TODO: Implement monsters range so they only pursue the player within their own given range." />
+    <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1146,8 +1152,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Monsters/Rat.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.22173913">
-          <caret line="13" column="47" selection-start-line="13" selection-start-column="47" selection-end-line="13" selection-end-column="47" />
+        <state vertical-scroll-proportion="0.29565218">
+          <caret line="18" column="0" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
           <folding />
         </state>
       </provider>
