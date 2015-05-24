@@ -7,13 +7,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a9b3aee9-dc5e-44c0-967e-a391226c5d02" name="Default" comment="">
-      <change type="DELETED" beforePath="C:\Users\Kevin\Desktop\CS211\DungeonCrawler\out\production\DungeonCrawler\DungeonBuilder3_0.class" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Kevin\Desktop\CS211\DungeonCrawler\out\production\DungeonCrawler\KeyHandle.class" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Kevin\Desktop\CS211\DungeonCrawler\out\production\DungeonCrawler\Monster.class" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Kevin\Desktop\CS211\DungeonCrawler\out\production\DungeonCrawler\Play.class" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DungeonCrawler/META-INF/MANIFEST.MF" afterPath="$PROJECT_DIR$/out/production/DungeonCrawler/META-INF/MANIFEST.MF" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Monsters/Monster.java" afterPath="$PROJECT_DIR$/src/Monsters/Monster.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Main/Play.java" afterPath="$PROJECT_DIR$/src/Main/Play.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="DungeonCrawler.iws" />
@@ -675,7 +669,7 @@
       <workItem from="1432373838116" duration="1328000" />
       <workItem from="1432376773151" duration="2197000" />
       <workItem from="1432411802660" duration="800000" />
-      <workItem from="1432413544996" duration="6722000" />
+      <workItem from="1432413544996" duration="6732000" />
     </task>
     <task id="LOCAL-00001" summary="Refactored Monster class to be a base class, created first child class Rat. Created a monster creator which uses sets of monsters based on the dungeon level to create randomized monsters for each floor based on that floor's difficulty.&#10;&#10;Changed monsters so they can't go through walls.&#10;&#10;TODO: Implement monsters range so they only pursue the player within their own given range.">
       <created>1432451998418</created>
@@ -689,11 +683,17 @@
       <option name="project" value="LOCAL" />
       <updated>1432452004894</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Refactored Monster class to be a base class, created first child class Rat. Created a monster creator which uses sets of monsters based on the dungeon level to create randomized monsters for each floor based on that floor's difficulty.&#10;&#10;Changed monsters so they can't go through walls.&#10;&#10;TODO: Implement monsters range so they only pursue the player within their own given range.">
+      <created>1432453767794</created>
+      <option name="number" value="00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1432453767794</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="105391000" />
+    <option name="totallyTimeSpent" value="105401000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
