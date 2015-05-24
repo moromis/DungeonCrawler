@@ -1,3 +1,7 @@
+package Main;
+
+import Monsters.Monster;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.font.FontRenderContext;
@@ -43,11 +47,17 @@ public class Play extends JPanel {
     private static int[][] CollisionMap; //2D array to check for collisions\
 
     private static Monster[] monsters; //array to store monsters in
+    private static monsterCreator mc;
     private static int mobNum; //Maxiumum number of mobs in the maze at any given time
 
     private static JFrame frame; // Jframe
 
     private static Boolean isDead = false;
+
+    /**
+     ***LEVEL VARIABLES
+     */
+    private static int dungeon_level = 1;
 
     public Play(){
         setMainFont(DEFAULT_FONT);
@@ -95,20 +105,14 @@ public class Play extends JPanel {
         frame.getContentPane().setBackground(Color.BLACK); //Set the background color
         frame.addKeyListener(new KeyHandle()); //Create our input handler
 
-        print(map, dungeonWidth, dungeonHeight);
+        print(map, dungeonHeight, dungeonWidth);
     }
 
     /**
      * Create monsters
      */
     private static void createMonsters(){
-        monsters = new Monster[mobNum];
-        for (int i = 0; i < monsters.length; i++) {
-            monsters[i] = new Monster(dungeonWidth, dungeonHeight, CollisionMap);
-        }
-        for(Monster m : monsters){
-            System.out.print("m:" +  m.getMonster() + "\n");
-        }
+        mc = new monsterCreator(current_x, current_y, CollisionMap, mobNum, dungeon_level);
     }
 
     /**
@@ -119,16 +123,16 @@ public class Play extends JPanel {
         g.setFont(mainFont);
 
         g.setColor(Color.WHITE); //Draw the monsters
-        for (int i = 0; i < monsters.length; i++) {
+        for (Monster monster : monsters) {
 
-            monsters[i].update(current_x, current_y); //Update the monster's position relative to the player
+            monster.update(current_x, current_y); //Update the monster's position relative to the player
 
-            if(checkVisible(monsters[i].getX(), monsters[i].getY())) {
+            if (checkVisible(monster.getX(), monster.getY())) {
                 g.setColor(Color.BLACK); //Cover up the character we're drawing over
-                g.fillRect(centerDrawX - fontWidth * (current_x - monsters[i].getX()), centerDrawY - fontHeight * (current_y - monsters[i].getY()) - fontHeight, fontWidth, fontHeight);
+                g.fillRect(centerDrawX - fontWidth * (current_x - monster.getX()), centerDrawY - fontHeight * (current_y - monster.getY()) - fontHeight, fontWidth, fontHeight);
 
                 g.setColor(Color.WHITE); //Draw our player character
-                g.drawString(monsters[i].getMonster(), centerDrawX - fontWidth*(current_x - monsters[i].getX()), centerDrawY - fontHeight*(current_y - monsters[i].getY()));
+                g.drawString(monster.getMonster(), centerDrawX - fontWidth * (current_x - monster.getX()), centerDrawY - fontHeight * (current_y - monster.getY()));
             }
         }
     }
@@ -250,7 +254,7 @@ public class Play extends JPanel {
         frame = new JFrame("Dungeon Crawler");
         frame.setSize(w, h);
         frame.setVisible(true);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
     }
 
     @Override
@@ -263,7 +267,7 @@ public class Play extends JPanel {
      * Sets the main font of the console, which is used to determine the size of
      * characters
      *
-     * @param font
+     * @param font - Font to set as main
      */
     private void setMainFont(Font font) {
         mainFont = font;

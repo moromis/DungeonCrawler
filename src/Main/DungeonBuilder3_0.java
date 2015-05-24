@@ -1,3 +1,4 @@
+package Main;
 
 /**
  * Created by Kevin on 5/17/2015.
@@ -54,8 +55,8 @@ public class DungeonBuilder3_0 {
         int n = 3;
         int l = (3 + (int) (Math.random() * ((x / 5 - 3) + 1))); //Length of room
         int h = (3 + (int) (Math.random() * ((y / 5 - 3) + 1))); //Height of room
-        int rel_x = 0;
-        int rel_y = 0;
+        int rel_x;
+        int rel_y;
         int direction = (int) (1 + (Math.random() * 4)); //Direction to go once room is made
 
         for (int i = 0; i < n; i++) { //Make n rooms

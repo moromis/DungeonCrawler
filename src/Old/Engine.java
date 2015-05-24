@@ -21,7 +21,7 @@ public class Engine {
 //        System.out.println("Enter a height for the map");
 //        command = Integer.parseInt(s.next());
 //        y = command;
-//        DungeonBuilder3_0 dm = new DungeonBuilder3_0(y, x);
+//        Main.DungeonBuilder3_0 dm = new Main.DungeonBuilder3_0(y, x);
 //
 //        char[][] map = dm.getMap();
 //        print(map, y, x);
