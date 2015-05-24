@@ -42,22 +42,15 @@ public class Monster {
         int store_x = x_pos;
         int store_y = y_pos;
         if(current_x < x_pos){
-            if(grid[y_pos][x_pos - 1] == 0) {
                 store_x = x_pos - 1;
-            }
         }else if(current_x > x_pos){
-            if(grid[y_pos][x_pos - 1] == 0) {
                 store_x = x_pos + 1;
-            }
         }
         if(current_y < y_pos){
-            if(grid[y_pos][x_pos - 1] == 0) {
                 store_y = y_pos - 1;
-            }
+
         }else if(current_y > y_pos){
-            if(grid[y_pos][x_pos - 1] == 0) {
                 store_y = y_pos + 1;
-            }
         }
 
         if(store_x > store_y){

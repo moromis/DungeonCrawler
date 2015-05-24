@@ -46,12 +46,17 @@ public class Play extends JPanel {
     private static char[][] map; //2D array to store our dungeon
     private static int[][] CollisionMap; //2D array to check for collisions\
 
+    /**
+     ***MONSTERS
+     */
     private static Monster[] monsters; //array to store monsters in
     private static monsterCreator mc;
     private static int mobNum; //Maxiumum number of mobs in the maze at any given time
 
+    /**
+     ***ENGINE STATE
+     */
     private static JFrame frame; // Jframe
-
     private static Boolean isDead = false;
 
     /**
@@ -80,8 +85,8 @@ public class Play extends JPanel {
      * Creates a maze
      */
     private static void start(){
-        dungeonWidth = 100; //Set width and height for the dungeon
-        dungeonHeight = 100;
+        dungeonWidth = 20; //Set width and height for the dungeon
+        dungeonHeight = 20;
 
         current_x = dungeonWidth /2; //Set our starting position
         current_y = dungeonHeight /2;
@@ -99,7 +104,8 @@ public class Play extends JPanel {
         map = dm.getDungeonMap();
         CollisionMap = dm.getCollisionMap();
 
-        mobNum = (dungeonWidth/10 + dungeonHeight/10)/2;
+//        mobNum = (dungeonWidth/10 + dungeonHeight/10)/2;
+        mobNum = 1;
         createMonsters(); //Create monsters in the maze
 
         frame.getContentPane().setBackground(Color.BLACK); //Set the background color
@@ -112,7 +118,8 @@ public class Play extends JPanel {
      * Create monsters
      */
     private static void createMonsters(){
-        mc = new monsterCreator(current_x, current_y, CollisionMap, mobNum, dungeon_level);
+        mc = new monsterCreator(current_x, current_y, CollisionMap, dungeon_level);
+        monsters = mc.makeMonsters(mobNum);
     }
 
     /**
