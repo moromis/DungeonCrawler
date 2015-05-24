@@ -86,8 +86,8 @@ public class Play extends JPanel {
      * Creates a maze
      */
     private static void start(){
-        dungeonWidth = 20; //Set width and height for the dungeon
-        dungeonHeight = 20;
+        dungeonWidth = 100; //Set width and height for the dungeon
+        dungeonHeight = 100;
 
         current_x = dungeonWidth /2; //Set our starting position
         current_y = dungeonHeight /2;
@@ -105,8 +105,7 @@ public class Play extends JPanel {
         map = dm.getDungeonMap();
         CollisionMap = dm.getCollisionMap();
 
-//        mobNum = (dungeonWidth/10 + dungeonHeight/10)/2;
-        mobNum = 1;
+        mobNum = (dungeonWidth/10 + dungeonHeight/10)/2;
         createMonsters(); //Create monsters in the maze
 
         frame.getContentPane().setBackground(Color.BLACK); //Set the background color
