@@ -2,6 +2,7 @@ package Monsters;
 
 /**
  * Created by Kevin on 5/20/2015.
+ * Base Class for Monsters
  */
 public class Monster {
     private String glyph;
@@ -41,21 +42,19 @@ public class Monster {
     public void update(int current_x, int current_y){
         int store_x = x_pos;
         int store_y = y_pos;
-        if(current_x < x_pos){
-                store_x = x_pos - 1;
-        }else if(current_x > x_pos){
-                store_x = x_pos + 1;
+        if(x_pos < current_x){
+                store_x++;
+        }else if(x_pos > current_x){
+                store_x--;
         }
-        if(current_y < y_pos){
-                store_y = y_pos - 1;
-
-        }else if(current_y > y_pos){
-                store_y = y_pos + 1;
+        if(y_pos > current_y){
+                store_y--;
+        }else if(y_pos < current_y){
+                store_y++;
         }
-
-        if(store_x > store_y){
+        if(store_x > x_pos || store_x < x_pos){
             x_pos = store_x;
-        }else if(store_x < store_y){
+        }else{
             y_pos = store_y;
         }
     }

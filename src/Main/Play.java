@@ -9,6 +9,7 @@ import java.awt.geom.Rectangle2D;
 
 /**
  * Created by Kevin on 5/17/2015.
+ * Main engine, guts of the game
  */
 public class Play extends JPanel {
     /**
@@ -141,6 +142,7 @@ public class Play extends JPanel {
                 g.setColor(Color.WHITE); //Draw our player character
                 g.drawString(monster.getMonster(), centerDrawX - fontWidth * (current_x - monster.getX()), centerDrawY - fontHeight * (current_y - monster.getY()));
             }
+            System.out.println("Enemy: " + monster.getX() + ", " + monster.getY());
         }
     }
 
@@ -178,6 +180,7 @@ public class Play extends JPanel {
      * Draws the player, in the middle of the screen.
      */
     private static void drawPlayer(){
+        System.out.println("Player: " + current_x + ", " + current_y);
         Graphics g = frame.getGraphics();
         g.setFont(mainFont);
 
@@ -192,7 +195,7 @@ public class Play extends JPanel {
      * Checks if the given object is visible within our viewing window
      */
     private static boolean checkVisible(int x, int y){
-        if(x > current_x - 10 && x < current_x + 10 && y > current_y - 5 && y < current_y + 5)
+        if(x >= current_x - 10 && x <= current_x + 10 && y >= current_y - 5 && y <= current_y + 5)
         {
             System.out.println("Visible");
             return true;
