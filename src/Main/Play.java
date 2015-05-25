@@ -12,25 +12,30 @@ import java.awt.geom.Rectangle2D;
  * Main engine, guts of the game
  */
 public class Play extends JPanel {
+
     /**
-     ***HEIGHT AND WIDTH VARIABLES***
+     ***FONT
      */
-
     private final Font DEFAULT_FONT = new Font("Courier New", Font.PLAIN, 18);
-
     private static int fontWidth;
     private static int fontHeight;
     private static Font mainFont = null;
     private static int fontYOffset;
 
+    /**
+     ***HEIGHT AND WIDTH VARIABLES***
+     */
+    //Dungeon
     private static int dungeonWidth; //Width of our dungeon
     private static int dungeonHeight; //Height of our dungeon
 
-    private static int width; //Width of the screen
-    private static int height; //height of the screen
-
+    //Player
     private static int current_x;
     private static int current_y;
+
+    //Screen
+    private static int width; //Width of the screen
+    private static int height; //height of the screen
 
     private static int DrawX; //X and Y to display the piece of our dungeon on
     private static int DrawY; //in terms of the window
@@ -40,6 +45,8 @@ public class Play extends JPanel {
     private static int maxDrawY;
     private static int centerDrawX;
     private static int centerDrawY;
+
+    private static int vision_range;
 
     /**
      ***ARRAYS
@@ -92,14 +99,16 @@ public class Play extends JPanel {
         current_x = dungeonWidth /2; //Set our starting position
         current_y = dungeonHeight /2;
 
-        DrawX = width/2 - fontWidth*10; //Set our print width and height
-        DrawY = fontHeight - 5;
+        DrawX = width/2 - fontWidth*vision_range; //Set our print width and height
+        DrawY = fontHeight - vision_range/2;
         centerDrawX = width/2;
         centerDrawY = fontHeight*fontHeight;
-        minDrawX = centerDrawX - 10*fontWidth;
-        minDrawY = centerDrawY - 5*fontHeight;
-        maxDrawX = centerDrawX + 9*fontWidth;
-        maxDrawY = centerDrawY + 4*fontHeight;
+        minDrawX = centerDrawX - vision_range*fontWidth;
+        minDrawY = centerDrawY - (vision_range/2)*fontHeight;
+        maxDrawX = centerDrawX + (vision_range-1)*fontWidth;
+        maxDrawY = centerDrawY + (vision_range/2 - 1)*fontHeight;
+
+        vision_range = 15;
 
         DungeonBuilder3_0 dm = new DungeonBuilder3_0(dungeonHeight, dungeonWidth); //create our dungeon
         map = dm.getDungeonMap();
@@ -148,7 +157,8 @@ public class Play extends JPanel {
     }
 
     /**
-     * Draws the background
+     * Draws the background,
+     * goes through the map array and prints it to our window line by line as per an old television.
      */
     private static void drawBG(){
         int dx = DrawX;
@@ -157,21 +167,22 @@ public class Play extends JPanel {
         Graphics g = frame.getGraphics();
         g.setFont(mainFont);
 
-        g.clearRect(0, 0, width, height);
-
+        g.clearRect(0, 0, width, height); //Clears the whole screen then redraws the background
         g.setColor(Color.BLACK);
         g.fillRect(0, 0, width, height);
 
         g.setColor(Color.WHITE);
-        for (int i = current_y - 5; i < current_y + 5; i++) {
-            for (int j = current_x - 10; j < current_x + 10; j++) {
+        for (int i = current_y - vision_range/2; i < current_y + vision_range/2; i++) { //Draw the background within
+            for (int j = current_x - vision_range; j < current_x + vision_range; j++) { //vision_range from the player
                 if(i>0 && j>0 && i< dungeonHeight && j< dungeonWidth) {
-                    currentLine += map[i][j];
+                    currentLine += map[i][j]; //Add to the line we're currently drawing
                 }else{
-                    currentLine += " ";
+                    currentLine += " "; //If the char is outside of the array, just add a space
                 }
             }
-            g.drawString(currentLine, dx, dy * fontHeight);
+            g.drawString(currentLine, dx - (fontWidth*vision_range), fontHeight*(dy - vision_range/2)); //Draw the string we just stored.
+                                                                                                        // These calculations keep the drawing centered
+                                                                                                        // in the screen based on the vision_range var
             currentLine = "";
             dy++;
         }
@@ -195,7 +206,7 @@ public class Play extends JPanel {
      * Checks if the given object is visible within our viewing window (Not the player though)
      */
     private static boolean checkVisible(int x, int y){
-        return (x >= current_x - 10 && x < current_x + 10 && y >= current_y - 5 && y < current_y + 5);
+        return (x >= current_x - vision_range && x < current_x + vision_range && y >= current_y - vision_range/2 && y < current_y + vision_range/2);
     }
 
     public static void move(int val, char dir){
