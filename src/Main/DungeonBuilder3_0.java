@@ -2,39 +2,40 @@ package Main;
 
 /**
  * Created by Kevin on 5/17/2015.
+ * Builds a dungeon
  */
 public class DungeonBuilder3_0 {
 
-    private int x;
-    private int y;
-    private char[][] map;
-    private int[][] CollisionMap;
+    private int x; //Width of the dungeon
+    private int y; //Height of the dungeon
+    private char[][] map; //Character representation of the map
+    private int[][] CollisionMap; //Integer representation of the map, used for collisions
 
-    public DungeonBuilder3_0(int max_y, int max_x) {
-        y = max_y;
-        x = max_x;
+    public DungeonBuilder3_0(int dungeon_height, int dungeon_width) {
+        y = dungeon_height;
+        x = dungeon_width;
 
-        map = new char[y][x];
+        map = new char[y][x]; //Initialize our arrays
         CollisionMap = new int[y][x];
-        fillMap(y, x);
-        tunnelMap(y, x, 1, 1); //Go up to 10 squares in each direction to start ourselves off
-        tunnelMap(y, x, 2, 1);
-        tunnelMap(y, x, 3, 1);
-        tunnelMap(y, x, 4, 1);
-        tunnelMap(y, x, 0, 0); //Then go crazy exactly twice
-        tunnelMap(y, x, 0, 0);
+        fillMap();
+        tunnelMap(1, 1); //Go up to 10 squares in each direction to start ourselves off
+        tunnelMap(2, 1);
+        tunnelMap(3, 1);
+        tunnelMap(4, 1);
+        tunnelMap(0, 0); //Then go crazy exactly twice
+        tunnelMap(0, 0);
 
-        placeRooms(y, x); //Scatter some rooms around
+        placeRooms(); //Scatter some rooms around
 
-        cleanup(y, x); //Cleanup the map so there's no loose doors in the middle of nowhere
+        cleanup(); //Cleanup the map so there's no loose doors in the middle of nowhere
 
-        makeCollisionMap(y, x);
+        makeCollisionMap();
     }
 
     /**
-     * This function gets rid of any doors in the middle of spaces.
+     * This function gets rid of any doors surrounded by floor (no need for it to be there
      */
-    private void cleanup(int y, int x) {
+    private void cleanup() {
         for (int i = 0; i < y; i++) {
             for (int j = 0; j < x; j++) {
                 if(map[i][j] == '='){ //If we're on a door
@@ -50,7 +51,10 @@ public class DungeonBuilder3_0 {
         }
     }
 
-    private void placeRooms(int y, int x) {
+    /**
+     * Once we're done making a spiderweb cave system we place some nice manmade looking rooms
+     */
+    private void placeRooms() {
         //int n = (int)(Math.random() * 5 + (x / 10) + (y*0.3)); //Number of rooms to be placed
         int n = 3;
         int l = (3 + (int) (Math.random() * ((x / 5 - 3) + 1))); //Length of room
@@ -74,25 +78,25 @@ public class DungeonBuilder3_0 {
                     case 1:
                         map[rel_y - 1][rel_x + (l/2)] = '=';
                         if(rel_y - 2 > 0) {
-                            tunnel(y, x, rel_y - 2, rel_x + (l / 2), direction);
+                            tunnel(rel_y - 2, rel_x + (l / 2), direction);
                         }
                         break;
                     case 2:
                         map[rel_y + (h/2)][rel_x + l] = '=';
                         if(rel_x + l + 1 < x) {
-                            tunnel(y, x, rel_y + (h / 2), rel_x + l + 1, direction);
+                            tunnel(rel_y + (h / 2), rel_x + l + 1, direction);
                         }
                         break;
                     case 3:
                         map[rel_y + h][rel_x + (l/2)] = '=';
                         if(rel_y + h + 1 < y) {
-                            tunnel(y, x, rel_y + h + 1, rel_x + (l / 2), direction);
+                            tunnel(rel_y + h + 1, rel_x + (l / 2), direction);
                         }
                         break;
                     case 4:
                         map[rel_y + (h/2)][rel_x - 1] = '=';
                         if(rel_x - 2 > 0) {
-                            tunnel(y, x, rel_y + (h / 2), rel_x - 2, direction);
+                            tunnel(rel_y + (h / 2), rel_x - 2, direction);
                         }
                         break;
                 }
@@ -105,15 +109,18 @@ public class DungeonBuilder3_0 {
     }
 
     /**
-     * From a given (x,y) tunnel in passed direction until we find floor
+     * From a given (rel_x, rel_y) tunnel in passed direction until we find floor
+     * @param rel_y - relative y position (situated within our maximum dungeon height)
+     * @param rel_x - relative x position (situated within our maximum dungeon width)
+     * @param direction - Direction in which to tunnel
      */
-    private void tunnel(int totaly, int totalx, int y, int x, int direction) {
-        while(map[y][x] == '#' && x < totalx && x > 0 && y < totaly && y > 0){ //While we're on a wall
+    private void tunnel(int rel_y, int rel_x, int direction) {
+        while(map[rel_y][rel_x] == '#' && rel_x < x && rel_x > 0 && rel_y < y && rel_y > 0){ //While we're on a wall
             switch (direction) {
                 case 1: //North
-                    if ((y - 1) > 0) {//So we don't go out of bounds
-                        map[y][x] = '+';
-                        y--;
+                    if ((rel_y - 1) > 0) {//So we don't go out of bounds
+                        map[rel_y][rel_x] = '+';
+                        rel_y--;
                     }else{
                         if(direction == 4){
                             direction = 1;
@@ -123,9 +130,9 @@ public class DungeonBuilder3_0 {
                     }
                     break;
                 case 2: //East
-                    if ((x + 1) < (totalx - 1)) {//So we don't go out of bounds
-                        map[y][x] = '+';
-                        x++;
+                    if ((rel_x + 1) < (x - 1)) {//So we don't go out of bounds
+                        map[rel_y][rel_x] = '+';
+                        rel_x++;
                     }else{
                         if(direction == 4){
                             direction = 1;
@@ -135,9 +142,9 @@ public class DungeonBuilder3_0 {
                     }
                     break;
                 case 3: //South
-                    if ((y + 1) < totaly - 1) {//So we don't go out of bounds
-                        map[y][x] = '+';
-                        y++;
+                    if ((rel_y + 1) < y - 1) {//So we don't go out of bounds
+                        map[rel_y][rel_x] = '+';
+                        rel_y++;
                     }else{
                         if(direction == 4){
                             direction = 1;
@@ -147,9 +154,9 @@ public class DungeonBuilder3_0 {
                     }
                     break;
                 case 4: //West
-                    if ((x - 1) > 0) { //So we don't go out of bounds
-                        map[y][x] = '+';
-                        x--;
+                    if ((rel_x - 1) > 0) { //So we don't go out of bounds
+                        map[rel_y][rel_x] = '+';
+                        rel_x--;
                     }else{
                         if(direction == 4){
                             direction = 1;
@@ -164,10 +171,8 @@ public class DungeonBuilder3_0 {
 
     /**
      * Fills the map with wall tile
-     * @param x = max x of the entire cave
-     * @param y = max y of the entire cave
      */
-    private void fillMap(int y, int x){
+    private void fillMap(){
         for (int i = 0; i < y; i++) {
             for (int j = 0; j < x; j++) {
                 map[i][j] = '#';
@@ -178,10 +183,8 @@ public class DungeonBuilder3_0 {
     /**
      * Fills an int[][] with ones where the player can't go, such as walls
      * 0 = floor (no collision), 1 = walls, 2 = doors
-     * @param x = max x of the entire cave
-     * @param y = max y of the entire cave
      */
-    private void makeCollisionMap(int y, int x){
+    private void makeCollisionMap(){
         for (int i = 0; i < y; i++) {
             for (int j = 0; j < x; j++) {
                 if(map[i][j] == '#'){
@@ -197,27 +200,25 @@ public class DungeonBuilder3_0 {
 
     /**
      * Tunnels out the cave.
-     * @param x = max x of the entire cave
-     * @param y = max y of the entire cave
      * @param dir = direction for the tunneler to head, if 0 it will be randomized
      * @param num = number of times for the tunneler to move, if 0 it will be randomized
      */
-    private void tunnelMap(int y, int x, int dir, int num){
+    private void tunnelMap(int dir, int num){
         int direction = dir;
-        if(dir == 0){
+        if(dir == 0){ //If no direction is specified just go in a random direction
             direction = (int)(1+(Math.random()*4));
         }
         int n;
-        if(num == 0){
+        if(num == 0){ //If no number of iterations is specified make a random number (within reason)
             n = (int)((Math.random()*(x*y) - (y/2)));
-        }else{
+        }else{ //otherwise make a number from 1 to 10
             n =(int)(Math.random()*10);
         }
-        int my_y = y/2;
+        int my_y = y/2; //Start from the middle of the dungeon
         int my_x = x/2;
-        map[my_y][my_x] = ':';
+        map[my_y][my_x] = '^'; //Make a spawn point indicator
 
-        while(n>0){
+        for (int i = n; i > 0; i--) {
             switch (direction) {
                 case 1: //North
                     if(my_y - 1 > 0){//So we don't go out of bounds
@@ -244,19 +245,31 @@ public class DungeonBuilder3_0 {
                     }
                     break;
             }
-            n--;
             direction = (int)(1+(Math.random()*4));
         }
     }
 
     /**
-     * Returns the class char array
+     * Returns the character map for the dungeon
      */
     public char[][] getDungeonMap() {
         return map;
     }
 
+    /**
+     * Return the collision map for the dungeon
+     */
     public int[][] getCollisionMap(){
         return CollisionMap;
+    }
+
+    /**
+     * Random number generator within a range
+     * @param Min - min number
+     * @param Max - max number
+     * @return a random int
+     */
+    private int randInt(int Min, int Max) {
+        return Min + (int)(Math.random() * ((Max - Min) + 1));
     }
 }

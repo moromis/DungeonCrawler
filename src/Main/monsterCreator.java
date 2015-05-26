@@ -10,7 +10,6 @@ import Monsters.Monster;
  */
 public class monsterCreator {
 
-    private static Monster[] mArray;
     private static LevelTemplate mCreator;
 
     public monsterCreator(int x, int y, int[][] map, int level){
@@ -22,7 +21,7 @@ public class monsterCreator {
     }
 
     public Monster[] makeMonsters(int num){
-        mArray = new Monster[num];
+        Monster[] mArray = new Monster[num];
 
         for (int i = 0; i < num; i++) { //Make passed number of monsters and put them in the array
             mArray[i] =  mCreator.createMonster();
