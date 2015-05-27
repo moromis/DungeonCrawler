@@ -10,6 +10,7 @@ public class KeyHandle extends KeyAdapter {
 
     //STATE
     boolean u = false; //unlock boolean
+    boolean i = false; //Inventory boolean - if true we should take an entirely different set of commands
 
     @Override
     public void keyPressed(KeyEvent e){
