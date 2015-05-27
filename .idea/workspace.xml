@@ -7,11 +7,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a9b3aee9-dc5e-44c0-967e-a391226c5d02" name="Default" comment="Built a new jar">
+      <change type="DELETED" beforePath="C:\Users\Kevin\Desktop\CS211\DungeonCrawler\out\production\DungeonCrawler\Old\Data.class" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Kevin\Desktop\CS211\DungeonCrawler\out\production\DungeonCrawler\Old\JConsole$1.class" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Kevin\Desktop\CS211\DungeonCrawler\out\production\DungeonCrawler\Old\JConsole.class" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Kevin\Desktop\CS211\DungeonCrawler\out\production\DungeonCrawler\Old\Room.class" afterPath="" />
+      <change type="MOVED" beforePath="C:\Users\Kevin\Desktop\CS211\DungeonCrawler\src\META-INF\MANIFEST.MF" afterPath="$PROJECT_DIR$/Jar/META-INF/MANIFEST.MF" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/DungeonCrawler_jar/DungeonCrawler.jar" afterPath="$PROJECT_DIR$/out/artifacts/DungeonCrawler_jar/DungeonCrawler.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Old/Data.java" afterPath="$PROJECT_DIR$/src/Old/Data.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Old/JConsole.java" afterPath="$PROJECT_DIR$/src/Old/JConsole.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Main/Play.java" afterPath="$PROJECT_DIR$/src/Main/Play.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Old/Room.java" afterPath="$PROJECT_DIR$/src/Old/Room.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/artifacts/DungeonCrawler_jar.xml" afterPath="$PROJECT_DIR$/.idea/artifacts/DungeonCrawler_jar.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="DungeonCrawler.iws" />
@@ -416,6 +418,7 @@
     <property name="OverrideImplement.overriding.sorted" value="false" />
     <property name="settings.editor.selected.configurable" value="vcs.Git" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/Jar" />
   </component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
@@ -781,7 +784,7 @@
       <workItem from="1432601496417" duration="3653000" />
       <workItem from="1432622421234" duration="3716000" />
       <workItem from="1432629809689" duration="21000" />
-      <workItem from="1432697665269" duration="842000" />
+      <workItem from="1432697665269" duration="1227000" />
     </task>
     <task id="LOCAL-00001" summary="Refactored Monster class to be a base class, created first child class Rat. Created a monster creator which uses sets of monsters based on the dungeon level to create randomized monsters for each floor based on that floor's difficulty.&#10;&#10;Changed monsters so they can't go through walls.&#10;&#10;TODO: Implement monsters range so they only pursue the player within their own given range.">
       <created>1432451998418</created>
@@ -861,15 +864,21 @@
       <option name="project" value="LOCAL" />
       <updated>1432698086757</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="Built a new jar">
+      <created>1432698514472</created>
+      <option name="number" value="00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1432698514472</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="129258000" />
+    <option name="totallyTimeSpent" value="129643000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -882,7 +891,7 @@
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.99261606" sideWeight="0.49791667" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.253125" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.253125" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -1191,13 +1200,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="3371" column="51" selection-start-line="3371" selection-start-column="51" selection-end-line="3371" selection-end-column="51" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Temp/Rar$DRa0.031/DungeonCrawler/src/Monster.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.21829855">
-          <caret line="4" column="25" selection-start-line="4" selection-start-column="25" selection-end-line="4" selection-end-column="25" />
         </state>
       </provider>
     </entry>
