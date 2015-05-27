@@ -304,6 +304,10 @@ public class Play extends JPanel {
     }
 
     /**
+     * Swap our normal play key handler for
+     */
+
+    /**
      * This function is a diagnostic tool, it just prints the given char[][]
      * @param m - the char array to print
      * @param y - the height of the array
