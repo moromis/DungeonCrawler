@@ -6,9 +6,8 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a9b3aee9-dc5e-44c0-967e-a391226c5d02" name="Default" comment="Built a new jar">
-      <change type="DELETED" beforePath="C:\Users\Kevin\Desktop\CS211\DungeonCrawler\out\production\DungeonCrawler\META-INF\MANIFEST.MF" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Kevin\Desktop\CS211\DungeonCrawler\out\production\DungeonCrawler\Old\Engine.class" afterPath="" />
+    <list default="true" id="a9b3aee9-dc5e-44c0-967e-a391226c5d02" name="Default" comment="new jar">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/DungeonCrawler_jar/DungeonCrawler.jar" afterPath="$PROJECT_DIR$/out/artifacts/DungeonCrawler_jar/DungeonCrawler.jar" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="DungeonCrawler.iws" />
@@ -783,7 +782,7 @@
       <workItem from="1432697665269" duration="1833000" />
       <workItem from="1432703810718" duration="594000" />
       <workItem from="1432710492922" duration="657000" />
-      <workItem from="1432714081072" duration="334000" />
+      <workItem from="1432714081072" duration="390000" />
     </task>
     <task id="LOCAL-00001" summary="Refactored Monster class to be a base class, created first child class Rat. Created a monster creator which uses sets of monsters based on the dungeon level to create randomized monsters for each floor based on that floor's difficulty.&#10;&#10;Changed monsters so they can't go through walls.&#10;&#10;TODO: Implement monsters range so they only pursue the player within their own given range.">
       <created>1432451998418</created>
@@ -875,11 +874,17 @@
       <option name="project" value="LOCAL" />
       <updated>1432698900407</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="new jar">
+      <created>1432714432005</created>
+      <option name="number" value="00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1432714432005</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="131834000" />
+    <option name="totallyTimeSpent" value="131890000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -958,7 +963,8 @@
     <MESSAGE value="Added Javadocs and comments all over, changed some var names in dungeonBuilder that were odd. Made code generally more readable. Added backing color to Monsters and the Player." />
     <MESSAGE value="Started inventory system, with starting items depending on chosen starting class. Inventory is drawn on screen." />
     <MESSAGE value="Built a new jar" />
-    <option name="LAST_COMMIT_MESSAGE" value="Built a new jar" />
+    <MESSAGE value="new jar" />
+    <option name="LAST_COMMIT_MESSAGE" value="new jar" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
