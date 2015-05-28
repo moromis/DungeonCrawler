@@ -9,4 +9,4 @@ Simple ASCII dungeon crawler.
 
 *Monsters spawn with a variety of looks and chase the player.
 
-**To download the executable .jar file to immediately play the game, navigate to the \out\artifacts\DungeonCrawler_jar folder.
+**To download the executable .jar file to immediately play the game, download and double click DungeonCrawler.jar
