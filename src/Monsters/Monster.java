@@ -62,23 +62,23 @@ public class Monster {
         int store_y = y;
         if(diff_x <= pursue_range && diff_y <= pursue_range) {
             if (x < player_x) {
-               // if (grid[y][x + 1] == 0) {
+                if (grid[y][x + 1] == 0) {
                     store_x++;
-                //}
+                }
             } else if (x > player_x) {
-               // if (grid[y][x - 1] == 0) {
+               if (grid[y][x - 1] == 0) {
                     store_x--;
-               // }
+               }
             }
 
             if (y < player_y) {
-               // if (grid[y + 1][x] == 0) {
+               if (grid[y + 1][x] == 0) {
                     store_y++;
-               // }
+               }
             } else if (y > player_y) {
-                //if (grid[y - 1][x] == 0) {
+                if (grid[y - 1][x] == 0) {
                     store_y--;
-                //}
+                }
             }
 
             if (store_x > x || store_x < x) {
