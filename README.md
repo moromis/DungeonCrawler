@@ -9,4 +9,4 @@ Simple ASCII dungeon crawler.
 
 *Monsters spawn and chase the the player if within a radius.
 
-**To download the executable .jar file to immediately play the game, download and double click DungeonCrawler.jar**
+**To download the executable .jar file to immediately play the game, download and run DungeonCrawler.jar**
